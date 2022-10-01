@@ -9,14 +9,14 @@ const { auth } = require('./midlewares/auth');
 const { handleError } = require('./midlewares/error');
 const { requestLogger, errorLogger } = require('./midlewares/logger');
 const NotFound = require('./errors/not-found');
-const { corsOptions } = require('./constants/settings');
+const { corsOptions, MONGO_DB_DEV } = require('./constants/settings');
 require('dotenv').config();
 
-const { PORT = 3300 } = process.env;
+const { PORT = 3300, MONGO_DB = MONGO_DB_DEV } = process.env;
 
 const app = express();
 app.use(cors(corsOptions));
-mongoose.connect('mongodb://localhost:27017/moviesexplorerdb', {
+mongoose.connect(MONGO_DB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

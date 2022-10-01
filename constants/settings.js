@@ -12,4 +12,6 @@ const corsOptions = {
   credentials: true,
 };
 
-module.exports = { corsOptions };
+const MONGO_DB_DEV = 'mongodb://localhost:27017/moviesdb';
+
+module.exports = { corsOptions, MONGO_DB_DEV };
