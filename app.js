@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 app.use(requestLogger);
 
 app.use('', require('./routes/auth'));
+
 app.use(auth);
 app.use('/users', require('./routes/users'));
 app.use('/movies', require('./routes/movies'));

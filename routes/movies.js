@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { celebrate } = require('celebrate');
-const { getMovies, createMovie, deleteMovie, } = require('../controllers/movies');
+const { getMovies, createMovie, deleteMovie } = require('../controllers/movies');
 const { validationModel, validationParam } = require('../constants/validation');
 
 router.get('', getMovies);

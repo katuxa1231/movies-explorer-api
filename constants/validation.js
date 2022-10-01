@@ -36,4 +36,6 @@ const validationParam = {
   id: customIdValidation,
 };
 
-module.exports = { validationModel, validationParam, linkRegExp, enRegExp, ruRegExp };
+module.exports = {
+  validationModel, validationParam, linkRegExp, enRegExp, ruRegExp,
+};

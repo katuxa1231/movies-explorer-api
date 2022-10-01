@@ -61,4 +61,3 @@ module.exports.updateUser = (req, res, next) => {
     .then((user) => res.send({ data: user }))
     .catch(next);
 };
-
