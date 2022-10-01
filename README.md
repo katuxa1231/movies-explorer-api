@@ -13,4 +13,4 @@
 
 #### Хостинг
 + IP: 51.250.105.230
-+ Ссылка: https://movies-info.nomoredomains.icu
++ Ссылка на API: https://api.movies-explorer.nomoredomains.icu
