@@ -1,10 +1,10 @@
 const Movie = require('../models/movie');
 const { errorMessage, StatusCode } = require('../constants/api');
-const BadRequest = require('../errors/bad-request');
 const Forbidden = require('../errors/forbidden');
+const NotFound = require('../errors/not-found');
 
 module.exports.getMovies = (req, res, next) => {
-  Movie.find({}).sort({ createAt: -1 })
+  Movie.find({})
     .then((movies) => res.send({ data: movies }))
     .catch(next);
 };
@@ -46,11 +46,11 @@ module.exports.deleteMovie = (req, res, next) => {
   Movie.findOne({ _id: req.params.movieId })
     .then((movie) => {
       if (!movie) {
-        throw new Forbidden(errorMessage[StatusCode.FORBIDDEN]);
+        throw new NotFound(errorMessage[StatusCode.NOT_FOUND]);
       }
 
       if (movie.owner.toString() !== req.user._id) {
-        throw new BadRequest('Фильм может быть удален только влдельцем');
+        throw new Forbidden(errorMessage.forbidden.deleteFilm);
       }
       movie.remove()
         .then((deletedMovie) => res.send(deletedMovie))

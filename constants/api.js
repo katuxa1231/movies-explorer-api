@@ -14,6 +14,11 @@ const errorMessage = {
   [StatusCode.BAD_REQUEST]: 'Переданы некорректные данные',
   [StatusCode.CONFLICT]: 'Пользователь с указанным email уже существует',
   [StatusCode.INTERNAL_SERVER_ERROR]: (message) => `На сервере произошла ошибка: ${message}`,
+  forbidden: {
+    deleteFilm: 'Фильм может быть удален только владельцем',
+  },
+  pathNotFound: 'Путь не существует',
+  authorizationError: 'Неправильные почта или пароль',
 };
 
 module.exports = { StatusCode, errorMessage };

@@ -28,7 +28,7 @@ const validationModel = {
     image: Joi.string().required().regex(linkRegExp),
     trailer: Joi.string().required().regex(linkRegExp),
     thumbnail: Joi.string().required().regex(linkRegExp),
-    movieId: customIdValidation,
+    movieId: Joi.number().required(),
   },
 };
 

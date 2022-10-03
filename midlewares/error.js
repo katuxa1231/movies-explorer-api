@@ -11,6 +11,7 @@ module.exports.handleError = (err, req, res, next) => {
 
   if (err.code === 11000) {
     res.status(StatusCode.CONFLICT).send({ message: errorMessage[StatusCode.CONFLICT] });
+    return;
   }
 
   res

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { celebrate } = require('celebrate');
 const { validationModel } = require('../constants/validation');
-const { login, createUser, logout } = require('../controllers/users');
+const { login, createUser } = require('../controllers/users');
 
 router.post('/signup', celebrate({
   body: validationModel.user,
@@ -13,7 +13,5 @@ router.post('/signin', celebrate({
     password: validationModel.user.password,
   },
 }), login);
-
-router.post('/logout', logout);
 
 module.exports = router;

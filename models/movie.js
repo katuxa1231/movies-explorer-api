@@ -7,7 +7,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (v) => ruRegExp.test(v),
-      message: 'Неправильный формат ссылки',
+      message: 'Разрешено использовать только символы кириллицы, пробел и дефис',
     },
   },
   nameEN: {
@@ -15,7 +15,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (v) => enRegExp.test(v),
-      message: 'Неправильный формат ссылки',
+      message: 'Разрешено использовать только символы латинского алфавита, пробел и дефис',
     },
   },
   country: {
@@ -68,7 +68,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   movieId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Number,
     required: true,
   },
 });
