@@ -15,7 +15,7 @@ const validationModel = {
   user: {
     email: Joi.string().required().email(),
     password: Joi.string().required(),
-    name: Joi.string().min(2).max(30),
+    name: Joi.string().required().min(2).max(30),
   },
   movie: {
     nameRU: Joi.string().required().regex(ruRegExp),

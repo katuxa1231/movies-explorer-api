@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     minLength: 2,
     maxLength: 30,
+    require: true,
     validate: {
       validator: (v) => isLength(v, { min: 2, max: 30 }),
       message: 'Длина имени должна быть от 2 до 30 символов',
