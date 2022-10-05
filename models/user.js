@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     minLength: 2,
     maxLength: 30,
-    require: true,
+    required: true,
     validate: {
       validator: (v) => isLength(v, { min: 2, max: 30 }),
       message: 'Длина имени должна быть от 2 до 30 символов',
@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
-    require: true,
+    required: true,
     validate: {
       validator: (v) => isEmail(v),
       message: 'Неправильный формат почты',
