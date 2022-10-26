@@ -19,7 +19,7 @@ module.exports.createMovie = (req, res, next) => {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     thumbnail,
     movieId,
   } = req.body;
@@ -35,7 +35,7 @@ module.exports.createMovie = (req, res, next) => {
     image,
     thumbnail,
     movieId,
-    trailerLink: trailer,
+    trailerLink,
     owner: req.user._id,
   })
     .then((movie) => res.send({ data: movie }))
@@ -43,7 +43,7 @@ module.exports.createMovie = (req, res, next) => {
 };
 
 module.exports.deleteMovie = (req, res, next) => {
-  Movie.findOne({ _id: req.params.movieId })
+  Movie.findOne({ movieId: req.params.movieId })
     .then((movie) => {
       if (!movie) {
         throw new NotFound(errorMessage[StatusCode.NOT_FOUND]);

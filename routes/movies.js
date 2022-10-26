@@ -11,7 +11,7 @@ router.post('', celebrate({
 
 router.delete('/:movieId', celebrate({
   params: {
-    movieId: validationParam.id,
+    movieId: validationParam.movieId,
   },
 }), deleteMovie);
 
