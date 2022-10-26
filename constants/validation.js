@@ -18,15 +18,15 @@ const validationModel = {
     name: Joi.string().required().min(2).max(30),
   },
   movie: {
-    nameRU: Joi.string().required().regex(ruRegExp),
-    nameEN: Joi.string().required().regex(enRegExp),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
     country: Joi.string().required(),
     director: Joi.string().required(),
     duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
     image: Joi.string().required().regex(linkRegExp),
-    trailer: Joi.string().required().regex(linkRegExp),
+    trailerLink: Joi.string().required().regex(linkRegExp),
     thumbnail: Joi.string().required().regex(linkRegExp),
     movieId: Joi.number().required(),
   },
@@ -34,6 +34,7 @@ const validationModel = {
 
 const validationParam = {
   id: customIdValidation,
+  movieId: Joi.number(),
 };
 
 module.exports = {

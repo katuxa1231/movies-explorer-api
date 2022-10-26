@@ -1,22 +1,14 @@
 const mongoose = require('mongoose');
-const { linkRegExp, ruRegExp, enRegExp } = require('../constants/validation');
+const { linkRegExp } = require('../constants/validation');
 
 const movieSchema = new mongoose.Schema({
   nameRU: {
     type: String,
     required: true,
-    validate: {
-      validator: (v) => ruRegExp.test(v),
-      message: 'Разрешено использовать только символы кириллицы, пробел и дефис',
-    },
   },
   nameEN: {
     type: String,
     required: true,
-    validate: {
-      validator: (v) => enRegExp.test(v),
-      message: 'Разрешено использовать только символы латинского алфавита, пробел и дефис',
-    },
   },
   country: {
     type: String,
