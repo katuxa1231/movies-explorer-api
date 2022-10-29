@@ -7,22 +7,30 @@ require('dotenv').config();
 const { NODE_ENV, JWT_SECRET } = process.env;
 const isProd = NODE_ENV === 'production';
 
+function getToken(userId, secretKey) {
+  return jwt.sign(
+    { _id: userId },
+    secretKey,
+    { expiresIn: '7d' },
+  );
+}
+
+function getCookieOptions(isProduction) {
+  return {
+    maxAge: 3600000 * 24 * 7,
+    httpOnly: true,
+    sameSite: isProduction ? 'None' : true,
+    secure: isProduction,
+  };
+}
+
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
 
   User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign(
-        { _id: user._id },
-        isProd ? JWT_SECRET : DEV_SECRET,
-        { expiresIn: '7d' },
-      );
-      res.cookie(COOKIE_KEY_NAME, token, {
-        maxAge: 3600000 * 24 * 7,
-        httpOnly: true,
-        sameSite: isProd ? 'None' : true,
-        secure: isProd,
-      }).send({ data: user });
+      const token = getToken(user._id, isProd ? JWT_SECRET : DEV_SECRET);
+      res.cookie(COOKIE_KEY_NAME, token, getCookieOptions(isProd)).send({ data: user });
     })
     .catch(next);
 };
@@ -43,9 +51,10 @@ module.exports.createUser = (req, res, next) => {
       name, email, password: hash,
     }))
     .then((newUser) => {
+      const token = getToken(newUser._id, isProd ? JWT_SECRET : DEV_SECRET);
       const user = newUser.toObject();
       delete user.password;
-      res.status(201).send({ data: user });
+      res.cookie(COOKIE_KEY_NAME, token, getCookieOptions(isProd)).status(201).send({ data: user });
     })
     .catch(next);
 };
